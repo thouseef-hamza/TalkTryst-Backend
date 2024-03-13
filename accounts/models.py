@@ -31,7 +31,7 @@ class MyAccountManager(BaseUserManager):
 class Account(AbstractBaseUser):
     full_name = models.CharField(max_length=150)
     phone_number=models.CharField(max_length=15,unique=True)
-    otp=models.CharField(max_length=7,default=generate_otp)
+    verification_sid = models.CharField(max_length=55, null=True)
     # required
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now_add=True)
@@ -63,5 +63,3 @@ class Profile(models.Model):
     
     def __str__(self) -> str:
         return self.user.full_name + " " + self.username
-    
-    
